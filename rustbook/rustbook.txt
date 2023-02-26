@@ -1,0 +1,14 @@
+The Rust Programming Language Book
+
+Chapter 1(Getting Started)
+- using a ! means that you’re calling a macro instead of a normal function
+-  Often, cargo check is much faster than cargo build, because it skips the step of producing an executable.  If you’re continually checking your work while writing the code, using cargo check will speed up the process
+
+Chapter 2(Programming a Guessing Game)
+- In Rust, variables are immutable by default
+- The :: syntax in the ::new line indicates that new is an associated function of the String type. An associated function is implemented on a type, in this case String, rather than on a particular instance of a String. Some languages call this a static method
+
+
+todos:
+- read -> https://timothya.com/learning/implementing-tcp-in-rust-attempt-1-rust/
+- read https://dev.to/opendataanalytics/learning-rust-by-building-a-to-do-app-2okd
