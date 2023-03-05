@@ -1,0 +1,28 @@
+Notes on This Week in Rust 
+
+Motivation
+- The idea is to read the newsletter, implement interesting projects found, and write blogs or tweet threads on lessons learned
+
+
+## Issue #484
+
+- Good event-blogging style -> https://matt.si/2023-02/rust-nation/
+
+Books I picked up 
+- Rust in Action
+- Programming Rust
+
+
+Resources/Ideas for future articles/projects
+- Introduction to Rust -> https://matt.si/2022-04/intro-to-rust-talk/
+- 8 Rust language exercises for programmers -> https://www.hyperexponential.com/blog/rust-language-exercises-at-hx
+- A guide to Options and Results -> https://cherrykitten.dev/blog/rust-1-options-results/
+- Rust Macros - The What ,why and How -> https://matt.si/2022-05/macros-what-why-how/
+- Write a First Person Game in 2KB With Rust -> https://grantshandy.github.io/posts/raycasting/
+    - Implement project
+    - Write article on lessons learned
+    - Add to portfolio
+
+## Issue #485
+
+----to be continued---
