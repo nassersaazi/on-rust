@@ -77,6 +77,17 @@ Chapter 10(Generic Types, Traits and Lifetimes)
 - It’s possible for structs to hold references, but in that case we would need to add a lifetime annotation on every reference in the struct’s definition.
 - Lifetimes on function or method parameters are called input lifetimes, and lifetimes on return values are called output lifetimes
 
+Chapter 11(Writing Automated Tests)
+- Test functions typically perform 3 actions
+    - Set up any needed data or state.
+    - Run the code you want to test.
+    - Assert the results are what you expect.
+- Under the surface, the assert_eq! and assert_ne! macros use the operators == and !=, respectively. When the assertions fail, these macros print their arguments using debug formatting, which means the values being compared must implement the PartialEq and Debug traits. All primitive types and most of the standard library types implement these traits. For structs and enums that you define yourself, you’ll need to implement PartialEq to assert equality of those types. You’ll also need to implement Debug to print the values when the assertion fails. Because both traits are derivable traits, this is usually as straightforward as adding the #[derive(PartialEq, Debug)] annotation to your struct or enum definition
+- Writing tests so they return a Result<T, E> enables you to use the question mark operator in the body of tests, which can be a convenient way to write tests that should fail if any operation within them returns an Err variant
+- The purpose of unit tests is to test each unit of code in isolation from the rest of the code to quickly pinpoint where code is and isn’t working as expected. You’ll put unit tests in the src directory in each file with the code that they’re testing. The convention is to create a module named tests in each file to contain the test functions and to annotate the module with cfg(test)
+- To run all the tests in a particular integration test file, use the --test argument of cargo test followed by the name of the file
+- If a project is a binary crate that only contains a src/main.rs file and doesn’t have a src/lib.rs file, we can’t create integration tests in the tests directory and bring functions defined in the src/main.rs file into scope with a use statement. Only library crates expose functions that other crates can use; binary crates are meant to be run on their own.
+- This is one of the reasons Rust projects that provide a binary have a straightforward src/main.rs file that calls logic that lives in the src/lib.rs file. Using that structure, integration tests can test the library crate with use to make the important functionality available. If the important functionality works, the small amount of code in the src/main.rs file will work as well, and that small amount of code doesn’t need to be tested.
 
 todos:
 - read -> https://timothya.com/learning/implementing-tcp-in-rust-attempt-1-rust/
@@ -85,3 +96,4 @@ todos:
 - write article on 'enums' in Rust -> after reading chapter 6 of the Rustbook
 - write article <Half an hour to Learn Bitcoin from the Commandline> -> inspiration - (https://github.com/BlockchainCommons/Learning-Bitcoin-from-the-Command-Line ,https://fasterthanli.me/articles/a-half-hour-to-learn-rust )
 - create 'learnrust.xyz' -> similar to 'bitcoincore.reviews', but for discussing rust books and rust open-source projects(current reading list -> rustbook, command-line rust, rust for rustaceans)
+
