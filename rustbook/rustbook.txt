@@ -89,6 +89,24 @@ Chapter 11(Writing Automated Tests)
 - If a project is a binary crate that only contains a src/main.rs file and doesn’t have a src/lib.rs file, we can’t create integration tests in the tests directory and bring functions defined in the src/main.rs file into scope with a use statement. Only library crates expose functions that other crates can use; binary crates are meant to be run on their own.
 - This is one of the reasons Rust projects that provide a binary have a straightforward src/main.rs file that calls logic that lives in the src/lib.rs file. Using that structure, integration tests can test the library crate with use to make the important functionality available. If the important functionality works, the small amount of code in the src/main.rs file will work as well, and that small amount of code doesn’t need to be tested.
 
+
+Chapter 12(Building a command-line program)
+- Iterators produce a series of values, and we can call the collect method on an iterator to turn it into a collection, such as a vector, that contains all the elements the iterator produces 
+- The Rust community has developed guidelines for splitting the separate concerns of a binary program when main starts getting large. This process has the following steps:
+
+    Split your program into a main.rs and a lib.rs and move your program’s logic to lib.rs.
+    As long as your command line parsing logic is small, it can remain in main.rs.
+    When the command line parsing logic starts getting complicated, extract it from main.rs and move it to lib.rs.
+
+- The responsibilities that remain in the main function after this process should be limited to the following:
+
+    Calling the command line parsing logic with the argument values
+    Setting up any other configuration
+    Calling a run function in lib.rs
+    Handling the error if run returns an error
+
+- This pattern is about separating concerns: main.rs handles running the program, and lib.rs handles all the logic of the task at hand. Because you can’t test the main function directly, this structure lets you test all of your program’s logic by moving it into functions in lib.rs. The code that remains in main.rs will be small enough to verify its correctness by reading it
+
 todos:
 - read -> https://timothya.com/learning/implementing-tcp-in-rust-attempt-1-rust/
 - read https://dev.to/opendataanalytics/learning-rust-by-building-a-to-do-app-2okd
